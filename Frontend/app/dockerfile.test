@@ -1,0 +1,5 @@
+FROM node:current-alpine3.11
+
+ADD ./ /app
+WORKDIR /app
+CMD npm start

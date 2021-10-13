@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: ./Frontend/app
+            dockerfile: dockerfile.test
+        volumes:
+            - ./Frontend/app:/app
+            - ./Frontend/app/node_modules:/app/node_modules
+        ports:
+            - "3131:3000"
+        env_file: ./.env/app.test.env
+        depends_on: 
+            - api
+    
+    api:
+        build: 
+            context: ./Backend/api
+            dockerfile: dockerfile.test
+        volumes: 
+            - ./Backend/api:/api
+        ports: 
+            - "8888:8000"
+        env_file:
+            - ./.env/api.test.env
+            - ./.env/db.test.env
+        depends_on: 
+            - db
+    
+    aggregator:
+        build: 
+            context: ./Backend/aggregator
+            dockerfile: dockerfile.test
+        volumes: 
+            - ./Backend/aggregator:/aggregator
+        env_file: ./.env/aggregator.test.env
+        depends_on: 
+            - api
+            - db
+    
+    db:
+        image: mdillon/postgis
+        container_name: postgres
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        env_file: ./.env/db.test.env
+
+volumes:
+    postgres_data: 
+    
