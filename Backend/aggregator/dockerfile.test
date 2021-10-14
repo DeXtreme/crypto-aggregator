@@ -13,8 +13,12 @@ RUN --mount=type=cache,target=/var/cache/apk ln -vs /var/cache/apk /etc/apk/cach
     && apk add --no-cache gcc libc-dev git \
     && apk add postgresql-dev autoconf automake libtool nasm\
     && apk del build-deps \
+    && apk add libxml2 libxml2-dev \
+    && apk add libxslt-dev \
     && apk add  gdal-dev gdal --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
     && apk add  geos-dev geos --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
+
+RUN rm -fr /var/cache/apk
 
 RUN mkdir /aggregator
 
