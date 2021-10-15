@@ -19,8 +19,8 @@ class Article(models.Model):
         The description of the article
     source : str
         The source of the article
-    source_icon : str Optional
-        A link to the icon of the source
+    pubdate : datetime
+        The publishing date
 
     """
     title = models.CharField(max_length=200)
@@ -28,7 +28,7 @@ class Article(models.Model):
     image = models.URLField(null=True)
     description = models.CharField(max_length=2000)
     source = models.CharField(max_length=50)
-    source_icon = models.URLField(null=True)
+    pubdate = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"{self.title} by {self.source}"
