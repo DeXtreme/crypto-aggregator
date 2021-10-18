@@ -27,7 +27,7 @@ class Article(models.Model):
     link = models.URLField()
     image = models.URLField(null=True)
     description = models.CharField(max_length=2000)
-    source = models.CharField(max_length=50)
+    source = models.CharField(max_length=100)
     pubdate = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
