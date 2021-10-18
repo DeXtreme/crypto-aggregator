@@ -1,20 +1,4 @@
-FROM python:3.7-alpine
-
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
-RUN --mount=type=cache,target=/var/cache/apk ln -vs /var/cache/apk /etc/apk/cache \
-    && apk update \
-    && apk add linux-headers rust cargo \
-    && apk add g++\
-    && apk add --virtual build-deps python3-dev musl-dev \
-    && apk add libffi-dev \
-    && apk add jpeg-dev zlib-dev  \
-    && apk add --no-cache gcc libc-dev git \
-    && apk add postgresql-dev autoconf automake libtool nasm\
-    && apk del build-deps \
-    && apk add  gdal-dev gdal --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
-    && apk add  geos-dev geos --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
+FROM python:3.7-bullseye
 
 RUN mkdir /api
 

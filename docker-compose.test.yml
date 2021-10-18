@@ -42,7 +42,7 @@ services:
             - db
     
     db:
-        image: mdillon/postgis
+        image: postgres:9.6-alpine
         container_name: postgres
         volumes:
             - postgres_data:/var/lib/postgresql/data/
