@@ -34,7 +34,9 @@ services:
             dockerfile: dockerfile.test
         volumes: 
             - ./Backend/aggregator:/aggregator
-        env_file: ./.env/aggregator.test.env
+        env_file: 
+            - ./.env/aggregator.test.env
+            - ./.env/db.test.env
         depends_on: 
             - api
             - db
