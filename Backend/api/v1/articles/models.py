@@ -1,6 +1,8 @@
 from django.db import models
 
-# Create your models here.
+class ArticleManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().order_by("-pubdate")
 
 class Article(models.Model):
     """
@@ -29,6 +31,9 @@ class Article(models.Model):
     description = models.CharField(max_length=2000)
     source = models.CharField(max_length=100)
     pubdate = models.DateTimeField(auto_now_add=True)
+
+    objects = models.Manager()
+    inorder = ArticleManager()
 
     def __str__(self):
         return f"{self.title} by {self.source}"
