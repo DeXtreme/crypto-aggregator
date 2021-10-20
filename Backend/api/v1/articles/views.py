@@ -1,3 +1,4 @@
+from django.db.models import Subquery
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin
@@ -12,10 +13,12 @@ class ArticlePaginator(BasePagination):
         params = request.query_params
         if "next" in params:
             id = params["next"]
-            articles = queryset.filter(id__gt=id)[:self.ARTICLE_LIMIT]
+            article = Article.objects.filter(id=id)[:1]
+            articles = queryset.filter(pubdate__gt=Subquery(article.values("pubdate")))[:self.ARTICLE_LIMIT]
         elif "prev" in params:
             id = params["prev"]
-            articles = queryset.filter(id__lt=id)[:self.ARTICLE_LIMIT]
+            article = Article.objects.filter(id=id)[:1]
+            articles = queryset.filter(pubdate__lt=Subquery(article.values("pubdate")))[:self.ARTICLE_LIMIT]
         else:
             articles = queryset[:self.ARTICLE_LIMIT]
         
