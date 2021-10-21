@@ -1,7 +1,9 @@
 from django.db import models
 
 class ArticleManager(models.Manager):
+    """Article model manager"""
     def get_queryset(self):
+        # return queryset of articles ordered by pubdate
         return super().get_queryset().order_by("-pubdate")
 
 class Article(models.Model):

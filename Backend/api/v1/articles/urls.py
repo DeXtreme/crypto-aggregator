@@ -6,5 +6,5 @@ from .views import ArticleViewSet
 app_name = "articles"
 
 router = DefaultRouter()
-router.register(r"", ArticleViewSet, basename="articles")
+router.register("", ArticleViewSet, basename="articles")
 urlpatterns = router.urls
