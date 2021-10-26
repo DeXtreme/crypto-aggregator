@@ -22,8 +22,8 @@ class ArticleTest(APITestCase):
         url = reverse("articles:articles-list")
         response = self.client.get(url)
         self.assertEqual(status.HTTP_200_OK, response.status_code)
-        json = response.data
-        self.assertEqual(json["count"],15)
+        data = response.data
+        self.assertEqual(data["count"],15)
 
     def test_get_latest_articles(self):
         # test retrieving latest articles
@@ -31,9 +31,9 @@ class ArticleTest(APITestCase):
         article = Article.objects.get(id=15)
         response = self.client.get(url,{"next": article.id})
         self.assertEqual(status.HTTP_200_OK, response.status_code)
-        json = response.data
-        self.assertEqual(json["count"], 5)
-        latest = json["results"][0]
+        data = response.data
+        self.assertEqual(data["count"], 5)
+        latest = data["results"][0]
         latest_pubdate = parser.parse(latest["pubdate"])
         self.assertGreater(latest_pubdate, article.pubdate)
 
@@ -43,9 +43,9 @@ class ArticleTest(APITestCase):
         article = Article.objects.get(id=6)
         response = self.client.get(url,{"prev": article.id})
         self.assertEqual(status.HTTP_200_OK, response.status_code)
-        json = response.data
-        self.assertEqual(json["count"], 5)
-        previous = json["results"][0]
+        data = response.data
+        self.assertEqual(data["count"], 5)
+        previous = data["results"][0]
         previous_pubdate = parser.parse(previous["pubdate"])
         self.assertLess(previous_pubdate, article.pubdate)
 
