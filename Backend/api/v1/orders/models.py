@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from v1.account.models import Account
 
 class Region(models.Model):
     """Model to store region information
@@ -38,6 +39,8 @@ class Order(models.Model):
     
     Attributes
     ----------
+    account: Account
+        The owner of the post
     type: str
         The type of the order
     coin: str
@@ -58,8 +61,9 @@ class Order(models.Model):
                     ("BUSD", "Binance USD"),
                     ("USDC", "USD Coin")]
 
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
     type = models.CharField(max_length=10, choices=type_choices)
-    coin_choices = models.CharField(max_length=10, choices=coin_choices)
+    coin = models.CharField(max_length=10, choices=coin_choices)
     price = models.FloatField()
     by = models.CharField(max_length=100)
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="orders")
