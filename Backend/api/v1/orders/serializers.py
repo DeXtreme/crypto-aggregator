@@ -17,3 +17,4 @@ class OrderSerializer(ModelSerializer):
     location = LocationSerializer()
     class Meta:
         model = Order
+        fields = "__all__"
