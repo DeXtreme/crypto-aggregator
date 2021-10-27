@@ -1,8 +1,6 @@
+from django.core import validators
 from django.db import models
-from django.conf import settings
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
+from django.core.validators import RegexValidator
 from v1.account.models import Account
 
 class Region(models.Model):
@@ -66,6 +64,7 @@ class Order(models.Model):
     coin = models.CharField(max_length=10, choices=coin_choices)
     price = models.FloatField()
     by = models.CharField(max_length=100)
+    contact = models.CharField(max_length=10,validators = [RegexValidator(r"^0\d{9}$")])
     location = models.ForeignKey(Location, on_delete=models.CASCADE, related_name="orders")
 
 
