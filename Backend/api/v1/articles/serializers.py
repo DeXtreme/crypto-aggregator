@@ -3,6 +3,7 @@ from .models import Article
 
 
 class ArticleSerializer(ModelSerializer):
+    """Article model serializer"""
     class Meta:
         model = Article
         fields = "__all__"
