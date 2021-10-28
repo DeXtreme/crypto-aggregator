@@ -1,0 +1,95 @@
+.navbar {
+    padding: 5px 30px;
+    box-shadow: 0px 1px 5px #bbb;
+    position: static;
+}
+
+.navbar .primary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.navbar .primary .logo {
+    font-family: 'Unica One', cursive;
+    font-size: 40px;
+}
+.navbar .primary .account {
+    position: relative;
+}
+
+.navbar .primary .account .login{
+    text-transform: uppercase;
+    font-weight: 500;
+ }
+
+ .navbar .primary .account .profile{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+}
+
+.navbar .primary .account .profile img{
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    background-color: black;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.navbar .primary .account .dropdown{
+    position: absolute;
+    background-color: #efefef;
+    width: 120%;
+    margin-top: 9px;
+    text-align: center;
+    transition: .4s linear;
+    overflow-y: hidden;
+    max-height: 0px;
+}
+
+.navbar .primary .account .dropdown button {
+    text-transform: uppercase;
+    color: #555;
+    font-weight: 500;
+    margin: 10px;
+}
+
+
+.navbar .secondary {
+    border-top: 1px solid #eee;
+    padding: 10px 0 5px 0
+}
+
+.navbar .secondary .tabs {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;  
+}
+.navbar .secondary .tabs button{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar .secondary .tabs i{
+    font-size: 25px;
+    color: #333;
+    margin: 0 5px;
+}
+
+
+
+
+
+
+
