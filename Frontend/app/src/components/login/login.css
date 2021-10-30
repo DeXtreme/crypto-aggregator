@@ -1,0 +1,105 @@
+.login {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    top:0;
+    left: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    animation: fade-in 0.2s linear 1 forwards;
+}
+
+.login .background{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -100;
+    background-color: #000000cc;
+}
+
+.login .container {
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login .logo{
+    color: white;
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 40px;
+    font-family: 'Unica One', cursive;
+}
+
+.login p{
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.login button {
+    width: 200px;
+    margin-bottom: 10px;
+    border: none;
+    padding: 10px;
+    border-radius: 30px;
+    display: flex;
+    flex-direction: row;
+}
+
+.login button span {
+    flex: 1;
+    font-weight: 500;
+    color: white;
+}
+
+.login button i {
+    margin-left: 10px;
+    font-size: 20px;
+    color: white
+}
+
+.login #gmail{
+    background-color: #DB4437;
+}
+
+.login #gmail:hover,
+.login #gmail:active{
+    background-color: #f75545;
+}
+
+.login #twitter{
+    background-color: #1DA1F2
+}
+
+.login #twitter:hover,
+.login #twitter:active {
+    background-color: #33b1ff;
+}
+
+.login #facebook{
+    background-color: #3c5a99;
+}
+
+.login #facebook:hover,
+.login #facebook:active{
+    background-color: #4d6db0;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.overflow-hide {
+    overflow-y: hidden;
+}
