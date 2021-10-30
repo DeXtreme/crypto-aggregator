@@ -31,7 +31,7 @@
     position: relative;
 }
 
-.navbar .primary .account .login{
+.navbar .primary .account .loginbtn{
     text-transform: uppercase;
     font-weight: 500;
  }
@@ -78,7 +78,7 @@
 .navbar .secondary .tabs {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;  
+    justify-content: space-around;  
 }
 .navbar .secondary .tabs button{
     font-size: 25px;
@@ -86,7 +86,9 @@
     transition: .1s cubic-bezier(0.175, 0.885, 0.32, 2);
 }
 
-.navbar .secondary .tabs button:active{
+.navbar .secondary .tabs button:active,
+.navbar .secondary .tabs button:hover, 
+.navbar .secondary .tabs .active{
     color: #333;
     transform: scale(1.3);
 }
