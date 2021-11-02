@@ -27,7 +27,7 @@ class SignIn(APIView):
             if not user:
                 user = User.objects\
                            .create_user(username=details["uid"],
-                                        password=uuid.uuid4())
+                                        password=str(uuid.uuid4()))
 
                 account = Account.objects\
                                  .create(user=user, 
@@ -36,7 +36,7 @@ class SignIn(APIView):
             else:
                 account = user.account
             
-            token = Token.objects.create(user=user)
+            token, _ = Token.objects.get_or_create(user=user)
             
             return Response({"name": account.name,
                              "photoUrl": account.photourl,

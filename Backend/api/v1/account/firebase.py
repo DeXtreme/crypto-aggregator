@@ -25,12 +25,8 @@ def getFirebaseUser(token):
     claims = auth.verify_id_token(token)
     uid = claims["uid"]
     fb_user = auth.get_user(uid)
-    providerData = fb_user.provider_data
 
-    if providerData:
-        raise Exception("No data")
-
-    name = providerData[0].display_name
-    photo = providerData[0].photo_url
+    name = fb_user.display_name
+    photo = fb_user.photo_url
 
     return {"uid": uid, "name": name, "photourl": photo}
