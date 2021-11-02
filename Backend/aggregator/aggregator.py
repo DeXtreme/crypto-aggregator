@@ -67,7 +67,7 @@ def main():
                     # Get article summary from the `description` tag
                     # or from the `encoded` tag
                     if(item.description):
-                        text = html.unescape(item.description.text[:1000])
+                        text = html.unescape(item.description.text[:500])
                     else:
                         text = html.unescape(item.encoded.text[:1000])
                     
