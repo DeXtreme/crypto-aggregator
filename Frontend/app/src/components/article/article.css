@@ -1,0 +1,40 @@
+.article {
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px 0 #bbb;
+    transition: .1s linear;
+    width: 100%;
+}
+
+.article:hover,
+.article:active {
+    box-shadow: 0 8px 16px 0 #bbb;
+}
+
+.article img {
+    height: 300px;
+    width: 100%;
+    border: none;
+    object-fit: cover;
+    object-position:center;
+}
+
+.article .details {
+    padding: 30px 30px;
+}
+
+.article .details .title{
+    margin-bottom: 10px;
+}
+
+.article .details .description{
+    margin-bottom: 30px;
+    color: #444;
+    font-size: 15px;
+}
+
+.article .details .source {
+    text-align: right;
+    color: #777;
+    text-transform: uppercase;
+    font-size: 12px;
+}
