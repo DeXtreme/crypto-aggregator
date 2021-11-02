@@ -12,7 +12,10 @@ function Navbar(){
     const selectNews = () => dispatch(selectView("news"));
     const selectPrices = () => dispatch(selectView("prices"));
     const selectOrders = () => dispatch(selectView("orders"));
-    const logout = () => dispatch(removeAccount());
+    const logout = () => {
+        dispatch(removeAccount());
+        showDrop(false);
+    }
     const login = () => dispatch(showLogin(true));
     return (
         <div className="navbar">
@@ -22,17 +25,21 @@ function Navbar(){
                 </div>
                 <div className="account">
                     {(account==null) ? 
-                    <button className="loginbtn" onClick={login}>Login</button>
+                    <button className="loginbtn" onClick={login}>Log in</button>
                     :
-                    <div className="profile">
-                        <img />
-                        <button 
-                            onClick={() => showDrop(prev => !prev)}
-                        >Test Name &#9662;</button>
-                    </div>}
-                    <div className="dropdown" style={isDropShow ? {maxHeight:"200px"} : {maxHeight:"0px"}}>
-                        <button onClick={logout}>Log out</button>
-                    </div>
+                    <>
+                        <div className="profile">
+                            <img src={account.photoUrl}/>
+                            <button 
+                                onClick={() => showDrop(prev => !prev)}
+                            >{account.name} &#9662;</button>
+                        </div>
+                        <div className="dropdown" style={isDropShow ? {maxHeight:"200px"} : {maxHeight:"0px"}}>
+                            <button onClick={logout}>Log out</button>
+                        </div>
+                    </>
+                    }
+                    
                 </div>
             </div>
             <div className="secondary">
