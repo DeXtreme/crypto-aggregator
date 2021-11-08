@@ -1,0 +1,55 @@
+.order{
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 12px;
+    color: #555;
+}
+
+.order .type-coin{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.order .type-coin .type{
+    color: green;
+}
+
+.order .price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 18px;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.order .price span {
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.order .details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order .location {
+    margin-bottom: 5px;
+}
+
+.order .contact {
+    font-size: 14px;
+}
+
+.order hr {
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
