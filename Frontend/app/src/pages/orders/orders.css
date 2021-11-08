@@ -1,0 +1,55 @@
+.orders {
+    padding: 20px 30px;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.orders .list{
+    overflow-y: scroll;
+    height: 100%;
+    scrollbar-width: none;
+}
+
+
+.orders button {
+    width: 100%;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.orders .filters {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    
+    flex-wrap: wrap;
+}
+
+.orders select {
+    background-color: transparent;
+    border: none;
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.orders input  {
+    border: none;
+    margin-bottom: 8px;
+    text-align: center;
+    width: 50%;
+}
+
+@media screen and (max-width:900px) {
+    .orders {
+        padding: 20px 50px;
+    }
+
+}
