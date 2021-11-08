@@ -1,5 +1,6 @@
 import { useSelector,useDispatch } from 'react-redux';
 import News from '../../pages/news/news';
+import Orders from '../../pages/orders/orders';
 import './slider.css';
 
 function Slider(props){
@@ -9,7 +10,7 @@ function Slider(props){
         <div class="slider">
             <div className={`panes ${(view==="orders") ? "left" : (view==="news") ? "middle" : "right"}`}>
                 <div className="side">
-                    
+                    <Orders />
                 </div>
                 <div className="main">
                     <News />
