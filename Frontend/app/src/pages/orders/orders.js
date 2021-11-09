@@ -18,7 +18,7 @@ function Orders(){
                     </select>
                     
                 </div>
-                <div>
+                <div className="filters">
                     <input placeholder="Min price" />
                     <input placeholder="Max price" />
                 </div>
