@@ -5,32 +5,37 @@
     color: #555;
 }
 
-.order .type-coin{
+.order .type-price{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 5px;
     font-size: 12px;
     text-transform: uppercase;
     font-weight: 500;
 }
 
-.order .type-coin .type{
+.order .type-price .type{
     color: green;
+}
+
+.order .type-price .type span {
+    color: black;
 }
 
 .order .price {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 18px;
+    font-size: 15px;
     color: black;
     margin-bottom: 5px;
 }
 
 .order .price span {
-    font-size: 14px;
-    margin-right: 5px;
+    font-size: 8px;
+    margin-right: 3px;
 }
 
 .order .details {

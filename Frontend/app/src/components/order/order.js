@@ -4,11 +4,11 @@ function Order({order}){
     return (
         <div className="order">
             <hr />
-            <div className="type-coin">
-                <p className="type">Buying</p>
-                <p className="coin">BTC</p>
+            <div className="type-price">
+                <p className="type">Buying <span>BTC</span></p>
+                <p className="price"><span>GHc</span>40000</p>
             </div>
-            <p className="price"><span>GHc</span>40000</p>
+            
             <div className="details">
                 <div>
                     <p className="by">Radarada shop</p>
