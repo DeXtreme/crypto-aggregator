@@ -7,7 +7,7 @@ function Slider(props){
     let view = useSelector(state => state.view);
     console.log(view);
     return (
-        <div class="slider">
+        <div className="slider">
             <div className={`panes ${(view==="orders") ? "left" : (view==="news") ? "middle" : "right"}`}>
                 <div className="side">
                     <Orders />

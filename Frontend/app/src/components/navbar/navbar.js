@@ -44,9 +44,9 @@ function Navbar(){
             </div>
             <div className="secondary">
                 <div className="tabs">
-                    <button className={(view==="orders") && "active"} onClick={selectOrders}><i class="fas fa-shopping-cart"></i></button>
-                    <button className={(view==="news") && "active"} onClick={selectNews}><i class="fas fa-newspaper"></i> </button>
-                    <button className={(view==="prices") && "active"} onClick={selectPrices}><i class="fas fa-dollar-sign"></i></button>
+                    <button className={(view==="orders") ? "active": ""} onClick={selectOrders}><i className="fas fa-shopping-cart"></i></button>
+                    <button className={(view==="news") ? "active" : ""} onClick={selectNews}><i className="fas fa-newspaper"></i> </button>
+                    <button className={(view==="prices") ? "active" : ""} onClick={selectPrices}><i className="fas fa-dollar-sign"></i></button>
                 </div>
             </div>
         </div>

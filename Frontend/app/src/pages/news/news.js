@@ -70,14 +70,14 @@ function News(){
         <div className="news" onScroll={scroll}>
             {isLoadNext &&
             <div> 
-                <div class="loadingio-spinner-eclipse-6jnodqcrdsw"><div class="ldio-4xn00gmph3">
+                <div className="loadingio-spinner-eclipse-6jnodqcrdsw"><div className="ldio-4xn00gmph3">
                     <div></div>
                 </div></div>
             </div>}
             {articles.map((article,i) => <Article article={article} key={i}/>)}
             {isLoadPrev && 
             <div> 
-                <div class="loadingio-spinner-eclipse-6jnodqcrdsw"><div class="ldio-4xn00gmph3">
+                <div className="loadingio-spinner-eclipse-6jnodqcrdsw"><div className="ldio-4xn00gmph3">
                     <div></div>
                 </div></div>
             </div>}
