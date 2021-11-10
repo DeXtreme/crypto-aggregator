@@ -4,7 +4,10 @@ let initial_state = {
     account: null,
     view: "news",
     login: false,
-    articles: []
+    articles: [],
+    orders: [],
+    myOrders: [],
+    regions: []
 }
 
 function reducer(state = initial_state, action){
@@ -32,6 +35,15 @@ function reducer(state = initial_state, action){
             }else{
                 return {...state, articles: [...old_articles,...new_articles]};
             }
+        case ACTIONS.ADD_ORDERS:
+            let orders = action.payload;
+            return {...state, orders:[...state.orders,...orders]};
+        case ACTIONS.SET_MYORDERS:
+            let myOrders = action.payload;
+            return {...state, myOrders:myOrders};
+        case ACTIONS.SET_REGIONS:
+            let regions = action.payload;
+            return {...state, regions:regions};
         default:
             return state;
     }
