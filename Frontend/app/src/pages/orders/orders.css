@@ -1,17 +1,48 @@
 .orders {
     padding: 20px 30px;
     height: 100vh;
+    
+}
+
+.orders .all{
+    height:100%;
     overflow: hidden;
 }
 
+.orders .tabs{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom:30px;
+    align-items: center;
+}
+
+.orders .tabs button:active,
+.orders .tabs button:hover, 
+.orders .tabs .active{
+    color: #333;
+    transform: scale(1.2);
+    font-weight: 500;
+}
+
+.orders .tabs button {
+    background-color: transparent;
+    color: #777;
+    border:none;
+    font-size:12px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .1s linear;
+}
+
 .orders .list{
-    overflow-y: scroll;
+    overflow: scroll;
     height: 100%;
     scrollbar-width: none;
 }
 
 
-.orders button {
+.orders .all button {
     width: 100%;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -24,26 +55,33 @@
     font-weight: 500;
 }
 
-.orders .filters {
+.orders .all .filters {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     margin-bottom: 10px;
-    flex-wrap: wrap;
 }
 
-.orders select {
+.orders .all select {
     background-color: transparent;
     border: none;
     color: #777;
     margin-bottom: 8px;
+    text-align: center;
+    max-width:30%;
 }
 
-.orders input  {
+.orders .all input  {
     border: none;
     margin-bottom: 8px;
     text-align: center;
     width: 40%;
+    padding: 2px;
+}
+
+.orders .all input:focus{
+    outline:none;
+    border-bottom: 1px solid #ddd;
 }
 
 @media screen and (max-width:900px) {

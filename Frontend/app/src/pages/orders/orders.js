@@ -1,20 +1,63 @@
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import Order from '../../components/order/order';
+import { API_HOST } from '../../config';
+import { setRegions } from '../../store/actions';
 import "./orders.css";
 
 function Orders(){
+    let [ orderView, setOrderView ] = useState("orders");
+    let orders = useSelector(state => state.orders);
+    let regions = useSelector(state => state.regions);
+    let myOrders = useSelector(state => state.myOrders);
+    let dispatch = useDispatch();
+
+    let locations = regions.reduce((prev,region)=>prev.concat(region.locations),[])
+                           .sort((a,b)=>a.name>b.name)
+    console.log(locations);
+
+    useEffect(()=>{
+        let url = `${API_HOST}v1/orders/locations`;
+        fetch(url).then(response => response.json())
+        .then((json)=>{
+            console.log(json);
+            dispatch(setRegions(json));
+        }).catch(error=>console.log(error.message))
+    },[]);
+
+
     return (
         <div className="orders">
-            <div>
+            <div className="tabs">
+                <button className={(orderView=="orders") ? "active": ""}
+                        onClick={()=>setOrderView("orders")}>Orders</button>
+                <button className={(orderView=="myorders") ? "active": ""}
+                        onClick={()=>setOrderView("myorders")}>My Orders</button>
+            </div>
+
+            {(orderView=="orders") ? <div className="all">
                 <button>Post Order</button>
                 <div className="filters">
                     <select>
                         <option>All</option>
+                        <option value="B">Buying</option>
+                        <option value="S">Selling</option>
                     </select>
                     <select>
-                        <option>All Coins</option>
+                        <option value="">All Coins</option>
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="USDT">USDT</option>
+                        <option value="USDC">USDC</option>
+                        <option value="BUSD">BUSD</option>
+                    </select>
+                    <select>
+                        <option value="">All Regions</option>
+                        {regions.map(region=><option key={region.id} value={region.id}>{region.name}</option>)}
                     </select>
                     <select>
                         <option>All Locations</option>
+                        {locations.map(location=><option key={location.id} value={location.id}>{location.name}</option>)}
                     </select>
                     
                 </div>
@@ -22,7 +65,6 @@ function Orders(){
                     <input placeholder="Min price" />
                     <input placeholder="Max price" />
                 </div>
-            </div>
             <div className="list">
                 <Order />
                 <Order />
@@ -34,6 +76,10 @@ function Orders(){
                 <Order />
             </div>
         </div>
+        :<div>
+         myOrders
+         </div>}
+    </div>
     );
 }
 
