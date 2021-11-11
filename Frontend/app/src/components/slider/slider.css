@@ -2,7 +2,7 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 .slider .panes{
@@ -28,7 +28,7 @@
 
 @media screen and (max-width: 900px) {
     .slider{
-        margin-top: 150px;
+        padding-top: 150px;
     }
 
     .slider .panes {
