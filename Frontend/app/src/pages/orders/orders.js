@@ -9,29 +9,72 @@ import "./orders.css";
 function Orders(){
     let [ orderView, setOrderView ] = useState("orders");
     let [ isShowAddOrder, setShowAddOrder ] = useState(false);
+    let [ locations, setLocations ] = useState([]);
+    let [ newOrder, setNewOrder ] = useState({
+        type: "B",
+        coin: "BTC",
+        price: "",
+        by: "",
+        contact: "",
+        location: ""
+    })
+    let [ error, setError ] = useState(null);
+
     let account = useSelector(state => state.account);
     let orders = useSelector(state => state.orders);
     let regions = useSelector(state => state.regions);
     let myOrders = useSelector(state => state.myOrders);
     let dispatch = useDispatch();
 
-    let locations = regions.reduce((prev,region)=>prev.concat(region.locations),[])
-                           .sort((a,b)=>a.name>b.name)
-
     const showAddOrder = (show)=>{
-        //if(account==null){
-        //    dispatch(showLogin(true));
-        //}else{
-            setShowAddOrder(true);
-        //}
+        if(show){
+            if(account==null){
+                dispatch(showLogin(true));
+            }else{
+                setShowAddOrder(true);
+            }
+        }else{
+            setShowAddOrder(false);
+        }
+    }
+
+    const handleChange = (e) => {
+        setNewOrder(prev =>{
+            let order = Object.assign({},prev);
+            order[e.target.id] = e.target.value;
+            return order;
+        })
+    }
+
+    const addOrder = (e) =>{
+        e.preventDefault();
+        let url = `${API_HOST}v1/orders/`;
+        fetch(url, {method:"POST", 
+                    headers:{'Authorization': `Token ${account.token}`,
+                             'Content-Type': 'application/json'},
+                    body:JSON.stringify(newOrder)})
+              .then(response => response.json())
+              .then(json=>{
+                  console.log(json)
+              }).catch(error => {
+                  console.log(error.message);
+                  setError(error.message)
+              })
     }
 
     useEffect(()=>{
         let url = `${API_HOST}v1/orders/locations`;
         fetch(url).then(response => response.json())
         .then((json)=>{
-            console.log(json);
+            let locations = json.reduce((prev,region)=>prev.concat(region.locations),[])
+                                    .sort((a,b)=>a.name>b.name)
             dispatch(setRegions(json));
+            setLocations(locations);
+            setNewOrder(prev =>{
+                let order = Object.assign({},prev);
+                order.location = locations[0].id;
+                return order;
+            })
         }).catch(error=>console.log(error.message))
     },[]);
 
@@ -90,29 +133,30 @@ function Orders(){
          myOrders
          </div>}
         {isShowAddOrder && <div className="add">
-            <div id="background" />
-            <form>
+            <div onClick={()=>showAddOrder(false)} id="background" />
+            <form onSubmit={addOrder}>
                 <h1>Add Order</h1>
+                { error && <p id="error">{error}</p>}
                 <div>        
-                <select>
-                    <option value="B">Buying</option>
-                    <option value="S">Selling</option>
-                </select>
-                <select>
-                    <option value="BTC">BTC</option>
-                    <option value="ETH">ETH</option>
-                    <option value="USDT">USDT</option>
-                    <option value="USDC">USDC</option>
-                    <option value="BUSD">BUSD</option>
-                </select>
+                    <select id="type"  value={newOrder.type} onChange={handleChange} >
+                        <option value="B">Buying</option>
+                        <option value="S">Selling</option>
+                    </select>
+                    <select id="coin" value={newOrder.coin}  onChange={handleChange}>
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="USDT">USDT</option>
+                        <option value="USDC">USDC</option>
+                        <option value="BUSD">BUSD</option>
+                    </select>
                 </div>          
-                <input placeholder="Price" inputMode="decimal" required />        
-                <input placeholder="Display Name" inputMode="text" required />
-                <input placeholder="Display Contact" inputMode="text" required />
-                <select>
-                    {locations.map(location=><option key={location.id} value={location.id}>{location.name}</option>)}
+                <input id="price" value={newOrder.price} onChange={handleChange} placeholder="Price" inputMode="decimal" required/>        
+                <input id="by" value={newOrder.by} onChange={handleChange} placeholder="Display Name" inputMode="text"required/>
+                <input id="contact" value={newOrder.contact} onChange={handleChange} placeholder="Display Contact" inputMode='tel' required/>
+                <select id="location" value={newOrder.location} onChange={handleChange}>
+                    {locations.map((location,i)=><option key={location.id} value={location.id} >{location.name}</option>)}
                 </select>
-                <button>Submit</button>                  
+                <button type="submit">Submit</button>                  
             </form>
         </div>}
     </div>
