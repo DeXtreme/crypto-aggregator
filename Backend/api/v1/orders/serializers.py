@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import fields
 from django.db.models.fields import CharField
 from rest_framework.serializers import ModelSerializer, CharField
 from .models import Order, Location, Region
@@ -14,7 +15,15 @@ class LocationSerializer(ModelSerializer):
         model = Location
         fields = "__all__"
 class OrderSerializer(ModelSerializer):
-    location = LocationSerializer()
+    location = LocationSerializer(read_only=True)
     class Meta:
         model = Order
-        fields = "__all__"
+        exclude = ["account"]
+
+
+class NewOrderSerializer(ModelSerializer):
+     class Meta:
+        model = Order
+        fields = '__all__'
+        extra_kwargs = {"account": {"write_only":True}}
+
