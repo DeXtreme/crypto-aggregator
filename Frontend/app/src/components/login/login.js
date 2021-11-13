@@ -89,13 +89,13 @@ return (
                 </div>
                 {error && <p id="error">{error}</p>}
                 <p>Log in with:</p>
-                <button id="gmail" onClick={gmailLogin}><i class="fab fa-google"></i><span>Gmail</span></button>
-                <button id="twitter" onClick={twitterLogin}><i class="fab fa-twitter"></i><span>Twitter</span></button>
-                <button id="facebook" onClick={facebookLogin}><i class="fab fa-facebook-f"></i><span>Facebook</span></button>
+                <button id="gmail" onClick={gmailLogin}><i className="fab fa-google"></i><span>Gmail</span></button>
+                <button id="twitter" onClick={twitterLogin}><i className="fab fa-twitter"></i><span>Twitter</span></button>
+                <button id="facebook" onClick={facebookLogin}><i className="fab fa-facebook-f"></i><span>Facebook</span></button>
             </div> 
             :
             <div>
-                <div class="loadingio-spinner-eclipse-rxkb3szgim"><div class="ldio-vh4jl67dfj8">
+                <div className="loadingio-spinner-eclipse-rxkb3szgim"><div className="ldio-vh4jl67dfj8">
                 <div></div>
                 </div></div>
             </div>
