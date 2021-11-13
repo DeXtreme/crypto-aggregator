@@ -38,7 +38,8 @@ class SignIn(APIView):
             
             token, _ = Token.objects.get_or_create(user=user)
             
-            return Response({"name": account.name,
+            return Response({"id": account.id,
+                             "name": account.name,
                              "photoUrl": account.photourl,
                              "token": token.key})
         else:
