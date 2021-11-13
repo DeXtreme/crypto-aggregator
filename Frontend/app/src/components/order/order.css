@@ -16,11 +16,15 @@
     font-weight: 500;
 }
 
-.order .type-price .type{
+.order .type-price .buy{
     color: green;
 }
 
-.order .type-price .type span {
+.order .type-price .sell{
+    color: red;
+}
+
+.order .type-price span {
     color: black;
 }
 

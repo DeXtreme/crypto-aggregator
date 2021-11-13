@@ -1,20 +1,21 @@
 import './order.css';
 
 function Order({order}){
+    const types = {B:"Buying",S:"Selling"}
     return (
         <div className="order">
             <hr />
             <div className="type-price">
-                <p className="type">Buying <span>BTC</span></p>
-                <p className="price"><span>GHc</span>40000</p>
+                <p className={(order.type=="B") ? "buy" : "sell"}>{types[order.type]} <span>{order.coin}</span></p>
+                <p className="price"><span>GHc</span>{order.price}</p>
             </div>
             
             <div className="details">
                 <div>
-                    <p className="by">Radarada shop</p>
-                    <p className="location">Greater Accra, Madina</p>
+                    <p className="by">{order.by}</p>
+                    <p className="location">{`${order.location.region}, ${order.location.name}`}</p>
                 </div>
-                <p className="contact">027309495</p>
+                <p className="contact">{order.contact}</p>
             </div>
             
         </div>
