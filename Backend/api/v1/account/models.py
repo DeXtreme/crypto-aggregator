@@ -21,4 +21,4 @@ class Account(models.Model):
     photourl = models.URLField(null=True)
     
     def __str__(self):
-        return self.username
+        return self.name
