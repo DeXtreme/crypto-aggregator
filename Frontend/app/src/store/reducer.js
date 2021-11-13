@@ -14,6 +14,7 @@ function reducer(state = initial_state, action){
     switch(action.type){
         case ACTIONS.ADD_ACCOUNT:
             let account = {
+                id: action.payload.id,
                 name : action.payload.name,
                 photoUrl : action.payload.photoUrl,
                 token : action.payload.token
@@ -35,9 +36,9 @@ function reducer(state = initial_state, action){
             }else{
                 return {...state, articles: [...old_articles,...new_articles]};
             }
-        case ACTIONS.ADD_ORDERS:
+        case ACTIONS.SET_ORDERS:
             let orders = action.payload;
-            return {...state, orders:[...state.orders,...orders]};
+            return {...state, orders:orders};
         case ACTIONS.SET_MYORDERS:
             let myOrders = action.payload;
             return {...state, myOrders:myOrders};
