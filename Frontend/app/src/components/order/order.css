@@ -5,7 +5,58 @@
     color: #555;
 }
 
-.order .type-price{
+.order .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.order .card {
+    flex-grow: 1;
+}
+
+.order .content .menu{
+    position: relative;
+}
+
+.order .content .menu button {
+    margin-left: 10px;
+    cursor: pointer;
+    padding: 5px;
+    background-color: transparent;
+    border: none;
+}
+
+.order .content .menu span {
+    display: block;
+    width: 4px;
+    height: 4px;
+    margin: 2px;
+    border-radius: 50%;
+    background-color: #aaa;
+}
+
+.order .content .menu .dropdown {
+    position: absolute;
+    right: 0;
+    background-color: #efefef;
+    text-align: center;
+    transition: .4s linear;
+    overflow-y: hidden;
+    max-height: 0px;
+}
+
+.order .content .menu .dropdown button{
+    display: block;
+    width: 80px;
+    padding: 5px;
+}
+
+.order .content .menu .dropdown.show {
+    max-height: 100px;
+}
+
+.order .content .type-price{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -16,15 +67,15 @@
     font-weight: 500;
 }
 
-.order .type-price .buy{
+.order .content .type-price .buy{
     color: green;
 }
 
-.order .type-price .sell{
+.order .content .type-price .sell{
     color: red;
 }
 
-.order .type-price span {
+.order .content .type-price span {
     color: black;
 }
 
