@@ -18,8 +18,9 @@ class OrdersViewSet(ModelViewSet):
     filterset_fields =  {"account" : ["exact"],
                          "type" : ["exact"],
                          "coin" : ["exact"],
-                         "price": ["lt","gt"],
-                         "location": ["exact"]
+                         "price": ["lte","gte"],
+                         "location": ["exact"],
+                         "location__region" : ["exact"]
                         }
 
     def get_permissions(self):
