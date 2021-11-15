@@ -18,6 +18,15 @@ function Orders(){
         contact: "",
         location: ""
     })
+    let [ filters , setFilters ]  = useState({
+        type: null,
+        coin: null,
+        price__gte: null,
+        price__lte: null,
+        location__region: null,
+        location: null,       
+    });
+
     let [ error, setError ] = useState(null);
     let [ loading, setLoading ] = useState(false);
 
@@ -66,12 +75,23 @@ function Orders(){
               }).catch(error => {
                   console.log(error.message);
                   setError(error.message)
-              }).finally((e)=> setLoading(false))
+              }).finally((e)=> {
+                  setLoading(false);
+                  setNewOrder({
+                    type: "B",
+                    coin: "BTC",
+                    price: "",
+                    by: "",
+                    contact: "",
+                    location: ""
+                });
+            })
     }
 
     const loadOrders = ()=>{
         let url = `${API_HOST}v1/orders/`;
-        fetch(url).then(response => response.json())
+        let params = Object.keys(filters).reduce((prev,x)=> (filters[x]) ? `${x}=${filters[x]}&${prev}` : prev,"");
+        fetch(`${url}?${params}`).then(response => response.json())
         .then((json)=>{
             dispatch(setOrders(json));         
         }).catch(error=>console.log(error.message))
@@ -82,7 +102,6 @@ function Orders(){
             let url = `${API_HOST}v1/orders/?account=${account.id}`;
             fetch(url).then(response => response.json())
             .then((json)=>{
-                console.log("myorders")
                 console.log(json);
                 dispatch(setMyOrders(json));         
             }).catch(error=>console.log(error.message))
@@ -103,14 +122,24 @@ function Orders(){
                 return order;
             })
         }).catch(error=>console.log(error.message))
-
-        loadOrders();
-        loadMyOrders();
     },[]);
 
     useEffect(()=>{
         loadMyOrders();
-    },[account])
+    },[account]);
+
+    useEffect(()=>{
+        loadOrders();
+    },[filters]);
+
+
+    const handleFilterChange = (e) => {
+        setFilters(prev =>{
+            let filters = Object.assign({},prev);
+            filters[e.target.name] = e.target.value;
+            return filters;
+        })
+    }
 
     return (
         <div className="orders">
@@ -122,14 +151,14 @@ function Orders(){
             </div>}
 
             {(orderView=="orders") ? <div className="all">
-                <button onClick={showAddOrder}>Post Order</button>
+                <button id="post" onClick={showAddOrder}>Post Order</button>
                 <div className="filters">
-                    <select>
-                        <option>All</option>
+                    <select name="type" onChange={handleFilterChange}>
+                        <option value="">All</option>
                         <option value="B">Buying</option>
                         <option value="S">Selling</option>
                     </select>
-                    <select>
+                    <select name="coin" onChange={handleFilterChange}>
                         <option value="">All Coins</option>
                         <option value="BTC">BTC</option>
                         <option value="ETH">ETH</option>
@@ -137,26 +166,28 @@ function Orders(){
                         <option value="USDC">USDC</option>
                         <option value="BUSD">BUSD</option>
                     </select>
-                    <select>
+                    <select name="location__region" onChange={handleFilterChange}>
                         <option value="">All Regions</option>
                         {regions.map(region=><option key={region.id} value={region.id}>{region.name}</option>)}
                     </select>
-                    <select>
-                        <option>All Locations</option>
+                    <select name="location" onChange={handleFilterChange}>
+                        <option value="">All Locations</option>
                         {locations.map(location=><option key={location.id} value={location.id}>{location.name}</option>)}
                     </select>
                     
                 </div>
                 <div className="filters">
-                    <input placeholder="Min price" />
-                    <input placeholder="Max price" />
+                    <input name="price__gte" placeholder="Min price" onChange={handleFilterChange}/>
+                    <input name="price__lte" placeholder="Max price" onChange={handleFilterChange}/>
                 </div>
             <div className="list">
                 {orders.map(order => <Order order={order} key={order.id} />)}
             </div>
         </div>
-        :<div>
-         myOrders
+        :<div className="myorders">
+            <div className="list">
+                {myOrders.map(order => <Order order={order} key={order.id} editable={true}/>)}
+            </div>
          </div>}
         {isShowAddOrder && <div className="add">
             <div onClick={()=>showAddOrder(false)} id="background" />

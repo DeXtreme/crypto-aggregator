@@ -1,7 +1,6 @@
 .orders {
     padding: 0px 30px;
-    height: 100%; 
-    
+    height: 100%;   
 }
 
 .orders .add{
@@ -139,7 +138,7 @@
 }
 
 
-.orders .all button {
+.orders .all #post {
     width: 100%;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -154,7 +153,7 @@
     transition: 0.1s linear;
 }
 
-.orders .all button:hover{
+.orders .all #post:hover{
     filter: brightness(125%);
 }
 
@@ -185,6 +184,17 @@
 .orders .all input:focus{
     outline:none;
     border-bottom: 1px solid #ddd;
+}
+
+.orders .myorders {
+    height:100%;
+}
+
+.orders .myorders .list{
+    height: 100%;
+    overflow: scroll;
+    scrollbar-width: none;
+    padding-bottom: 40px;
 }
 
 @media screen and (max-width:900px) {
