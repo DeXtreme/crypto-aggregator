@@ -8,6 +8,7 @@ import "./orders.css";
 
 function Orders(){
     let [ orderView, setOrderView ] = useState("orders");
+    let [ editId, setEditId ] = useState(null);
     let [ isShowAddOrder, setShowAddOrder ] = useState(false);
     let [ locations, setLocations ] = useState([]);
     let [ newOrder, setNewOrder ] = useState({
@@ -88,6 +89,37 @@ function Orders(){
             })
     }
 
+    const editOrder = (e) =>{
+        e.preventDefault();
+        setError(null);
+        setLoading(true);
+        let url = `${API_HOST}v1/orders/${editId}/`;
+        fetch(url, {method:"PATCH", 
+                    headers:{'Authorization': `Token ${account.token}`,
+                             'Content-Type': 'application/json'},
+                    body:JSON.stringify(newOrder)})
+              .then(response => response.json())
+              .then(json=>{
+                  loadMyOrders();
+                  setLoading(false);
+                  showAddOrder(false);
+              }).catch(error => {
+                  console.log(error.message);
+                  setError(error.message)
+              }).finally((e)=> {
+                  setLoading(false);
+                  setNewOrder({
+                    type: "B",
+                    coin: "BTC",
+                    price: "",
+                    by: "",
+                    contact: "",
+                    location: ""
+                });
+                setEditId(null);
+            })
+    }
+
     const loadOrders = ()=>{
         let url = `${API_HOST}v1/orders/`;
         let params = Object.keys(filters).reduce((prev,x)=> (filters[x]) ? `${x}=${filters[x]}&${prev}` : prev,"");
@@ -141,6 +173,29 @@ function Orders(){
         })
     }
 
+    const handleDelete = (id) => {
+        let url = `${API_HOST}v1/orders/${id}/`;
+            fetch(url,{method:"delete", 
+                       headers:{'Authorization': `Token ${account.token}`,
+                                'Content-Type': 'application/json'}})
+            .then((json)=>{
+                loadMyOrders();        
+            }).catch(error=>console.log(error.message))
+    }
+
+    const handleEdit = (order) => {
+        setNewOrder({
+            type: order.type,
+            coin: order.coin,
+            price: order.price,
+            by: order.by,
+            contact: order.contact,
+            location: order.location.id
+        });
+        setEditId(order.id);
+        setShowAddOrder(true);
+    }
+
     return (
         <div className="orders">
             {account && <div className="tabs">
@@ -186,13 +241,13 @@ function Orders(){
         </div>
         :<div className="myorders">
             <div className="list">
-                {myOrders.map(order => <Order order={order} key={order.id} editable={true}/>)}
+                {myOrders.map(order => <Order order={order} key={order.id} editable={true} handleDelete={handleDelete} handleEdit={handleEdit}/>)}
             </div>
          </div>}
         {isShowAddOrder && <div className="add">
             <div onClick={()=>showAddOrder(false)} id="background" />
-            {(!loading) ? <form onSubmit={addOrder}>
-                <h1>Add Order</h1>
+            {(!loading) ? <form onSubmit={(editId==null) ? addOrder : editOrder}>
+                <h1>{(editId==null) ? "Add Order" : "Edit Order"}</h1>
                 { error && <p id="error">{error}</p>}
                 <div>        
                     <select id="type"  value={newOrder.type} onChange={handleChange} >
@@ -216,7 +271,7 @@ function Orders(){
                 <button type="submit">Submit</button>                  
             </form> :
             <div>
-                <div class="loadingio-spinner-eclipse-rxkb3szgim"><div class="ldio-vh4jl67dfj8">
+                <div className="loadingio-spinner-eclipse-rxkb3szgim"><div className="ldio-vh4jl67dfj8">
                 <div></div>
                 </div></div>
             </div>

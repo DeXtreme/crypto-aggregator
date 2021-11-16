@@ -36,8 +36,8 @@ function Order({order,editable,handleEdit,handleDelete}){
                         <span></span>
                     </button>
                     <div className={`dropdown ${(isShowMenu) ? "show" : ""}`}>
-                        <button onClick={()=>handleEdit(order.id)}>Edit</button>
-                        <button onClick={()=>handleDelete(order.id)}>Delete</button>
+                        <button onClick={()=>{showMenu(false);handleEdit(order)}}>Edit</button>
+                        <button onClick={()=>{showMenu(false);handleDelete(order.id)}}>Delete</button>
                     </div>
                 </div>
                 }
