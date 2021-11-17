@@ -4,6 +4,12 @@ import './order.css';
 function Order({order,editable,handleEdit,handleDelete}){
     const types = {B:"Buying",S:"Selling"}
 
+    const coin_images = {BTC:"https://assets.coingecko.com/coins/images/1/large/bitcoin.png",
+                         ETH:"https://assets.coingecko.com/coins/images/279/large/ethereum.png",
+                         USDT:"https://assets.coingecko.com/coins/images/325/large/Tether-logo.png",
+                         USDC:"https://assets.coingecko.com/coins/images/6319/large/USD_Coin_icon.png",
+                         BUSD: "https://assets.coingecko.com/coins/images/9576/large/BUSD.png"}
+
     let [ isShowMenu, setShowMenu ] = useState(false);
 
     const showMenu = () =>{
@@ -16,7 +22,7 @@ function Order({order,editable,handleEdit,handleDelete}){
             <div className="content">
                 <div className="card">
                     <div className="type-price">
-                        <p className={(order.type=="B") ? "buy" : "sell"}>{types[order.type]} <span>{order.coin}</span></p>
+                        <p className={`type ${(order.type=="B") ? "buy" : "sell"}`}>{types[order.type]}<img src={coin_images[order.coin]} /><span>{order.coin}</span></p>
                         <p className="price"><span>GHc</span>{order.price}</p>
                     </div>
                     

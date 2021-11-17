@@ -79,6 +79,17 @@
     color: black;
 }
 
+.order .content .type-price .type{
+    display: flex;
+    align-items: center;
+}
+.order .content .type-price img {
+    width: 18px;
+    height: 18px;
+    margin-left: 8px;
+    margin-right: 5px;
+}
+
 .order .price {
     display: flex;
     flex-direction: row;
