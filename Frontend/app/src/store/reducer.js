@@ -7,7 +7,8 @@ let initial_state = {
     articles: [],
     orders: [],
     myOrders: [],
-    regions: []
+    regions: [],
+    prices : [],
 }
 
 function reducer(state = initial_state, action){
@@ -45,6 +46,14 @@ function reducer(state = initial_state, action){
         case ACTIONS.SET_REGIONS:
             let regions = action.payload;
             return {...state, regions:regions};
+        case ACTIONS.SET_PRICES:
+            let data = action.payload;
+            let prices = data.map((coin,i)=>({id:i,
+                                              name: coin["name"],
+                                              price: coin["current_price"],
+                                              cap: coin["market_cap"],
+                                              change: coin["price_change_percentage_24h"]}));
+            return {...state, prices:prices};    
         default:
             return state;
     }
