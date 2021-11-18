@@ -1,0 +1,68 @@
+.price {
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+.price .content {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.price .content .coin-cap {
+    width: 40%; 
+    padding-right: 10px;
+}
+.price .content .current{
+    width: 35%;
+}
+.price .content .change{
+    width: 25%;
+}
+
+.price hr {
+    border: none;
+    border-bottom: 1px solid #ccc;
+}
+
+.price .coin-cap .coin{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.price .coin-cap .coin span {
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+
+.price .coin-cap .coin img{
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+.price .coin-cap .cap {
+    font-size: 10px;
+    color: #999;
+    margin-left: 28px;
+}
+
+.price .current {
+    text-align: start;
+}
+
+.price .change {
+    text-align: end;
+}
+
+.price .up{
+    color: green;
+}
+
+.price .down{
+    color: red;
+}
