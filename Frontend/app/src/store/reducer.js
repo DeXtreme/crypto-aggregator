@@ -8,7 +8,7 @@ let initial_state = {
     orders: [],
     myOrders: [],
     regions: [],
-    prices : [],
+    prices : {},
 }
 
 function reducer(state = initial_state, action){
@@ -48,11 +48,25 @@ function reducer(state = initial_state, action){
             return {...state, regions:regions};
         case ACTIONS.SET_PRICES:
             let data = action.payload;
-            let prices = data.map((coin,i)=>({id:i,
-                                              name: coin["name"],
-                                              price: coin["current_price"],
-                                              cap: coin["market_cap"],
-                                              change: coin["price_change_percentage_24h"]}));
+            let prices = {};
+            data.map((coin,i)=>{
+                let price_change = null;
+                if(state.prices.hasOwnProperty(coin.id)){
+                    if(state.prices[coin.id].price > coin["current_price"]){
+                        price_change = -1;
+                    }else if(state.prices[coin.id].price < coin["current_price"]){
+                        price_change = 1;
+                    }else{
+                        price_change = state.prices[coin.id].price_change;
+                    }
+                }
+                prices[coin.id] = {image: coin["image"],
+                                   name: coin["name"],
+                                   price: coin["current_price"],
+                                   price_change: price_change, 
+                                   cap: coin["market_cap"],
+                                   change: coin["price_change_percentage_24h"]};
+            });
             return {...state, prices:prices};    
         default:
             return state;
