@@ -1,0 +1,64 @@
+#footer {
+    background-color: #333;
+    color: #ccc;
+    text-align: center;
+}
+
+#footer .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+#footer .container .logo h1{
+    font-family: 'Unica One', cursive;
+    font-size: 40px;
+    color: white;
+    font-weight: 300;
+}
+
+#footer .container .logo p{
+    font-size: 10px;
+    color: #ccc;
+    text-align: end;
+}
+
+#footer .container .links {
+    text-align: center;
+    font-size: 13px;
+}
+
+#footer .container .links a:visited{
+    color: #888;
+}
+
+#footer .container .links h4{
+    margin-bottom: 10px;
+}
+
+#footer .container .links ul{
+    display: inline-block;
+    list-style: none;
+    padding: 0 20px;
+    text-align: start;
+}
+
+#footer #sig{
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 10px;
+    color: white;
+}
+
+@media screen and (max-width:900px) {
+    #footer .container .links ul {
+        display: block;
+        padding: 0px 40px;
+        padding: 0;
+        text-align: center;
+    }
+
+}
+
