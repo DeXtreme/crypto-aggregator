@@ -1,6 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500&family=Unica+One&display=swap');
-body, button{
+
+.dark {
+  --background-color: #222;
+  --font-color: white;
+  color : white;
+  --sub-font: #ccc;
+  --shadow: #444;
+  --navbar-color: #222;
+  --active: #bbb;
+}
+
+.light {
+  --background-color: white;
+  --font-color: black;
+  color: black;
+  --sub-font: #555;
+  --shadow: #bbb;
+  --navbar-color: white;
+  --active: #333;
+}
+
+.App, button{
   font-family: 'Montserrat';
+  background-color: var(--background-color);
+
 }
 
 @keyframes ldio-vh4jl67dfj8 {
