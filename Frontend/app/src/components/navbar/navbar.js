@@ -32,7 +32,7 @@ function Navbar(){
                             <img src={account.photoUrl}/>
                             <button 
                                 onClick={() => showDrop(prev => !prev)}
-                            >{account.name} &#9662;</button>
+                            ><span>{account.name}</span> &#9662;</button>
                         </div>
                         <div className="dropdown" style={isDropShow ? {maxHeight:"200px"} : {maxHeight:"0px"}}>
                             <button onClick={logout}>Log out</button>
