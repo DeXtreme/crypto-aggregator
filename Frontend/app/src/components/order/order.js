@@ -23,7 +23,7 @@ function Order({order,editable,handleEdit,handleDelete}){
                 <div className="card">
                     <div className="type-price">
                         <p className={`type ${(order.type=="B") ? "buy" : "sell"}`}>{types[order.type]}<img src={coin_images[order.coin]} /><span>{order.coin}</span></p>
-                        <p className="price"><span>GHc</span>{order.price}</p>
+                        <p className="price"><span>GHc</span>{order.price.toLocaleString("en-US")}</p>
                     </div>
                     
                     <div className="details">
