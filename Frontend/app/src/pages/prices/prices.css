@@ -1,7 +1,19 @@
 #prices {
     padding: 0px 30px;
     height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
+    overflow-y: hidden;
 }
 
+#prices .list {
+    overflow-y: scroll;
+    scrollbar-width: none;
+    height: 100%;
+}
+
+
+@media screen and (max-width:900px) {
+    #prices {
+        padding: 0px 40px;
+    }
+
+}

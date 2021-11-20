@@ -27,7 +27,9 @@ function Prices(){
 
     return(
         <div id="prices">
-            {Object.keys(prices).map(id=><Price price={prices[id]} key={id}/>)}
+            <div className="list">
+                {Object.keys(prices).map(id=><Price price={prices[id]} key={id}/>)}
+            </div>
         </div>
     );
 }
