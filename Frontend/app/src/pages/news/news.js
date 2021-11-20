@@ -67,20 +67,22 @@ function News(){
     }
 
     return (
-        <div className="news" onScroll={scroll}>
-            {isLoadNext &&
-            <div> 
-                <div className="loadingio-spinner-eclipse-6jnodqcrdsw"><div className="ldio-4xn00gmph3">
-                    <div></div>
-                </div></div>
-            </div>}
-            {articles.map((article,i) => <Article article={article} key={i}/>)}
-            {isLoadPrev && 
-            <div> 
-                <div className="loadingio-spinner-eclipse-6jnodqcrdsw"><div className="ldio-4xn00gmph3">
-                    <div></div>
-                </div></div>
-            </div>}
+        <div className="news">
+            <div className="list" onScroll={scroll}>
+                {isLoadNext &&
+                <div> 
+                    <div className="loadingio-spinner-eclipse-6jnodqcrdsw"><div className="ldio-4xn00gmph3">
+                        <div></div>
+                    </div></div>
+                </div>}
+                {articles.map((article,i) => <Article article={article} key={i}/>)}
+                {isLoadPrev && 
+                <div> 
+                    <div className="loadingio-spinner-eclipse-6jnodqcrdsw"><div className="ldio-4xn00gmph3">
+                        <div></div>
+                    </div></div>
+                </div>}
+            </div>
         </div>
     );
 }
