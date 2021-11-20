@@ -116,7 +116,7 @@
 .orders .tabs button:active,
 .orders .tabs button:hover, 
 .orders .tabs .active{
-    color: #333;
+    color: var(--active);
     transform: scale(1.2);
     font-weight: 500;
 }
@@ -167,7 +167,7 @@
 .orders .all select {
     background-color: transparent;
     border: none;
-    color: #777;
+    color: var(--font-color);
     margin-bottom: 8px;
     text-align: center;
     max-width:30%;
@@ -179,6 +179,8 @@
     text-align: center;
     width: 40%;
     padding: 2px;
+    color: var(--font-color);
+    background-color: transparent;
 }
 
 .orders .all input:focus{
@@ -199,7 +201,7 @@
 
 @media screen and (max-width:900px) {
     .orders {
-        padding: 0px 50px;
+        padding: 0px 40px;
     }
 
 }
