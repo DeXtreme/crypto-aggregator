@@ -8,15 +8,15 @@ function Price({price}){
                         <div className="coin">
                             <img src={price.image} /><span>{price.name}</span>
                         </div>
-                        <div className="cap">
-                            $ {price.cap}
-                        </div>
+                        <p className="cap">$ {price.cap.toLocaleString("en-US")}</p>
                     </div>
                     <div className={`current ${price.price_change==1 ?"up" :price.price_change==-1 ?"down" : "" }`}>
-                        $ {price.price}
+                        $ {price.price.toLocaleString("en-US",{maximumFractionDigits: 10})}
                     </div>
-                    <div className={`change ${price.change>0 ? "up" : price.change<0 ? "down" : ""}`}> 
-                        {price.change} %
+                    <div className="change">
+                    <p className={`${price.change>0 ? "up" : price.change<0 ? "down" : ""}`}> 
+                        {price.change} % </p>
+                    <p className="label">24h Change</p>
                     </div>
                 </div>
                 <hr />

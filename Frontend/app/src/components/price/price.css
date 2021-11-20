@@ -59,6 +59,11 @@
     text-align: end;
 }
 
+.price .change .label{
+    font-size: 10px;
+    color: #999;
+}
+
 .price .up{
     color: green;
 }
