@@ -1,13 +1,13 @@
 .article {
     margin-bottom: 30px;
-    box-shadow: 0 4px 8px 0 #bbb;
+    box-shadow: 0 4px 8px 0 var(--shadow);
     transition: .1s linear;
     width: 100%;
 }
 
 .article:hover,
 .article:active {
-    box-shadow: 0 8px 16px 0 #bbb;
+    box-shadow: 0 8px 16px 0 var(--shadow);
 }
 
 .article img {
@@ -28,7 +28,7 @@
 
 .article .details .description{
     margin-bottom: 30px;
-    color: #444;
+    color: var(--sub-font);
     font-size: 15px;
 }
 
