@@ -28,7 +28,16 @@
     font-size: 40px;
 }
 .navbar .primary .account {
-    position: relative;
+   
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navbar .primary .account #toggle{
+    color: var(--sub-font);
+    margin-right: 20px;
+    font-size: 20px;
 }
 
 .navbar .primary .account .loginbtn{
@@ -38,6 +47,7 @@
  }
 
  .navbar .primary .account .profile{
+   position: relative;
    display: flex;
    flex-direction: row;
    align-items: center;
@@ -48,23 +58,24 @@
 }
 
 .navbar .primary .account .profile img{
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
     margin-right: 5px;
     border-radius: 50%;
 }
 
-.navbar .primary .account .dropdown{
+.navbar .primary .account .profile .dropdown{
     position: absolute;
     background-color: #efefef;
-    width: 120%;
-    margin-top: 9px;
+    width: 100%;
+    top: 30px;
+    right: 0;
     text-align: center;
     transition: .4s linear;
     overflow-y: hidden;
 }
 
-.navbar .primary .account .dropdown button {
+.navbar .primary .account .profile .dropdown button {
     text-transform: uppercase;
     color: #555;
     font-weight: 500;

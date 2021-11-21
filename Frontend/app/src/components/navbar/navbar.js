@@ -1,11 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { selectView, removeAccount, showLogin } from '../../store/actions';
+import { selectView, removeAccount, showLogin, toggleDark} from '../../store/actions';
 import "./navbar.css";
 
 function Navbar(){
     let account = useSelector(state => state.account);
     let view = useSelector(state => state.view)
+    let dark = useSelector(state => state.dark);
     let dispatch = useDispatch()
     const [isDropShow, showDrop ] = useState(false);
 
@@ -17,6 +18,7 @@ function Navbar(){
         showDrop(false);
     }
     const login = () => dispatch(showLogin(true));
+    const toggle = () => dispatch(toggleDark());
     return (
         <div className="navbar">
             <div className="primary">
@@ -24,6 +26,7 @@ function Navbar(){
                     <p>CediX</p>
                 </div>
                 <div className="account">
+                    <button id="toggle" onClick={toggle}>{(dark ? <i class="far fa-sun"></i> :<i class="fas fa-moon"></i>)}</button>
                     {(account==null) ? 
                     <button className="loginbtn" onClick={login}>Log in</button>
                     :
@@ -33,10 +36,11 @@ function Navbar(){
                             <button 
                                 onClick={() => showDrop(prev => !prev)}
                             ><span>{account.name}</span> &#9662;</button>
+                            <div className="dropdown" style={isDropShow ? {maxHeight:"200px"} : {maxHeight:"0px"}}>
+                                <button onClick={logout}>Log out</button>
+                            </div>
                         </div>
-                        <div className="dropdown" style={isDropShow ? {maxHeight:"200px"} : {maxHeight:"0px"}}>
-                            <button onClick={logout}>Log out</button>
-                        </div>
+                        
                     </>
                     }
                     

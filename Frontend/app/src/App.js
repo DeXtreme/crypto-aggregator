@@ -9,8 +9,9 @@ import './App.css';
 
 function App() {
   let showLogin = useSelector(state => state.login);
+  let dark = useSelector(state => state.dark);
   return (
-    <div className="App light">
+    <div className={`App ${(dark ? "dark" : "light")}`}>
       <Navbar />
       {showLogin && <Login />} 
       <Slider />
