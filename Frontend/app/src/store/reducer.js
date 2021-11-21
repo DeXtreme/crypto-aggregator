@@ -1,6 +1,7 @@
 import * as ACTIONS from './actions';
 
 let initial_state = {
+    isDark: false,
     account: null,
     view: "news",
     login: false,
@@ -13,6 +14,8 @@ let initial_state = {
 
 function reducer(state = initial_state, action){
     switch(action.type){
+        case ACTIONS.TOGGLE_DARK:
+            return {...state, dark:!state.dark};
         case ACTIONS.ADD_ACCOUNT:
             let account = {
                 id: action.payload.id,
