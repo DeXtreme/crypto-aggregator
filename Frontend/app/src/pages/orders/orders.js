@@ -37,6 +37,17 @@ function Orders(){
     let myOrders = useSelector(state => state.myOrders);
     let dispatch = useDispatch();
 
+    const initNewOrder = ()=>{
+        setNewOrder({
+            type: "B",
+            coin: "BTC",
+            price: "",
+            by: "",
+            contact: "",
+            location: ""
+        });
+    }
+
     const showAddOrder = (show)=>{
         if(show){
             if(account==null){
@@ -47,6 +58,10 @@ function Orders(){
         }else{
             if(!loading){
                 setShowAddOrder(false);
+            }
+            if(editId!=null){
+                setEditId(null);
+                initNewOrder();
             }
         }
     }
@@ -78,14 +93,7 @@ function Orders(){
                   setError(error.message)
               }).finally((e)=> {
                   setLoading(false);
-                  setNewOrder({
-                    type: "B",
-                    coin: "BTC",
-                    price: "",
-                    by: "",
-                    contact: "",
-                    location: ""
-                });
+                  initNewOrder();
             })
     }
 
@@ -108,14 +116,7 @@ function Orders(){
                   setError(error.message)
               }).finally((e)=> {
                   setLoading(false);
-                  setNewOrder({
-                    type: "B",
-                    coin: "BTC",
-                    price: "",
-                    by: "",
-                    contact: "",
-                    location: ""
-                });
+                  initNewOrder();
                 setEditId(null);
             })
     }
