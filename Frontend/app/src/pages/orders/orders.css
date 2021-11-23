@@ -58,33 +58,39 @@
 
 .orders .add form div select{
     width: 47%;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
 }
 .orders .add form select{
     margin-bottom: 15px;
-    background-color: white;
     outline: none;
     padding: 10px 0px;
     border-radius: 20px;
     text-align: center;
     border: none;
-    
+    background: transparent;
+    color: white;
+    border: 1px solid white;
 }
 
 .orders .add form input{
     margin-bottom: 15px;
-    background-color: white;
     outline: none;
     padding: 10px 0px;
     border-radius: 20px;
     text-align: center;
     border: none;
+    background: transparent;
+    color: white;
+    border: 1px solid white;
 }
 
 .orders .add form button {
     width: 100%;
     margin-bottom: 20px;
     text-transform: uppercase;
-    background-color: #444;
+    background: transparent;
     color: white;
     border: none;
     border-radius: 20px;
@@ -93,10 +99,13 @@
     font-weight: 500;
     cursor: pointer;
     transition: 0.1s linear;
+    color: white;
+    border: 1px solid white;
 }
 
 .orders .add form button:hover{
-    filter: brightness(60%);
+    color: black;
+    background-color: white;
 }
 
 .orders .all{
