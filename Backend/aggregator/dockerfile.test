@@ -6,6 +6,8 @@ WORKDIR /aggregator
 
 ADD ./requirements.txt ./
 
+RUN apt-get update && apt-get install -y cron
+
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip install --upgrade pip \
     && python3 -m pip install --upgrade setuptools \
@@ -13,4 +15,4 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 ADD ./ ./
 
-CMD (crontab -l ; echo "@hourly python /aggregator/aggregator.py") | crontab -
+CMD env >> /etc/environment; (echo "@hourly python /aggregator/aggregator.py") | crontab - ; cron -f -l 2;
