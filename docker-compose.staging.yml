@@ -1,0 +1,56 @@
+version: "3.8"
+
+services:
+    reverse:
+      image: nginx
+      ports:
+        - "80:80"
+      volumes:
+        - ./nginx/conf.d/:/etc/nginx/conf.d/
+      depends_on:
+        - api
+        - app
+      
+    app:
+        build:
+            context: ./Frontend/app
+            dockerfile: dockerfile.staging
+        env_file: ./.env/app.staging.env
+        depends_on: 
+            - api
+    
+    api:
+        build: 
+            context: ./Backend/api
+            dockerfile: dockerfile.staging
+        volumes: 
+            - ./Backend/api:/api
+        env_file:
+            - ./.env/api.staging.env
+            - ./.env/db.staging.env
+        depends_on: 
+            - db
+    
+    aggregator:
+        build: 
+            context: ./Backend/aggregator
+            dockerfile: dockerfile.staging
+        volumes: 
+            - ./Backend/aggregator:/aggregator
+        env_file: 
+            - ./.env/aggregator.staging.env
+            - ./.env/db.staging.env
+        depends_on: 
+            - api
+            - db
+    
+    db:
+        image: postgres:9.6-alpine
+        container_name: postgres
+        volumes:
+            - postgres_data:/var/lib/postgresql/data/
+        env_file: ./.env/db.staging.env
+
+volumes:
+    postgres_data: 
+    
