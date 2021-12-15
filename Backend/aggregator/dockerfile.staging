@@ -1,0 +1,17 @@
+FROM python:3.7-bullseye
+
+RUN mkdir /aggregator
+
+WORKDIR /aggregator
+
+ADD ./requirements.txt ./
+
+RUN apt-get update && apt-get install -y cron
+
+RUN pip install --upgrade pip \
+    && python3 -m pip install --upgrade setuptools \
+    && pip install -r requirements.txt
+
+ADD ./ ./
+
+CMD env >> /etc/environment; (echo "@hourly python /aggregator/aggregator.py") | crontab - ; cron -f -l;
