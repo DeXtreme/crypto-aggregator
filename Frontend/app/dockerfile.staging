@@ -2,7 +2,7 @@ FROM node:current-alpine3.11 AS npm-builder
 
 ADD ./ /app
 WORKDIR /app
-RUN touch ./src/config.js; echo export const API_HOST=$API_HOST$';' > ./src/config.js;
+RUN touch ./src/config.js; echo export const API_HOST=$'"'$API_HOST$'"'$';' > ./src/config.js;
 
 RUN set -x && \
     npm install && \
