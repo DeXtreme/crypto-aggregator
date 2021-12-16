@@ -23,8 +23,6 @@ services:
         build: 
             context: ./Backend/api
             dockerfile: dockerfile.staging
-        volumes: 
-            - ./Backend/api:/api
         env_file:
             - ./.env/api.staging.env
             - ./.env/db.staging.env
@@ -35,8 +33,6 @@ services:
         build: 
             context: ./Backend/aggregator
             dockerfile: dockerfile.staging
-        volumes: 
-            - ./Backend/aggregator:/aggregator
         env_file: 
             - ./.env/aggregator.staging.env
             - ./.env/db.staging.env
