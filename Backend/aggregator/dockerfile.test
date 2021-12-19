@@ -15,4 +15,4 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 
 ADD ./ ./
 
-CMD env >> /etc/environment; (echo "@hourly python /aggregator/aggregator.py") | crontab - ; cron -f -l 2;
+CMD env >> /etc/environment; (echo "@hourly /usr/local/bin/python /aggregator/aggregator.py >/proc/1/fd/1 2>/proc/1/fd/1") | crontab - ; cron -f -l 2;

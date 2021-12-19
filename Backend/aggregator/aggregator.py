@@ -28,7 +28,7 @@ def main():
     # Get Article model
     Article = Base.classes.articles_article
 
-    feeds = open("feeds","r").read().split(",")
+    feeds = open("/aggregator/feeds","r").read().split(",")
 
     with Session() as session:
         for feed in feeds:
